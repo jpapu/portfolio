@@ -1,9 +1,12 @@
 from typing import List
 from django.shortcuts import render
-from django.view.generic import ListView, DetailView
-from portfolio.web_app.models import Post
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 from .models import Post
 
-class HomeView(ListView):
-    model = Post
-    template_name = 'index.html'
+def home(request):
+    return render(request, 'home.html', {})
+
+# class HomeView(ListView):
+#     model = Post
+#     template_name = 'home.html'
