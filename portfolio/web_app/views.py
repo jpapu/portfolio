@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
+from.forms import CreatePostForm
 
 class HomeView(ListView):
     model = Post
@@ -14,5 +15,7 @@ class ArticleDetailView(DetailView):
 
 class CreatePostView(CreateView):
     model = Post
+    form_class = CreatePostForm
     template_name = 'create_post.html'
-    fields = '__all__'
+    #fields = '__all__'
+    #fields = ('title', 'body')
