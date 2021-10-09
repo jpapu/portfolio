@@ -1,9 +1,9 @@
 from typing import List
 from django.shortcuts import render
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
-from.forms import CreatePostForm
+from.forms import CreatePostForm, EditPostForm
 
 class HomeView(ListView):
     model = Post
@@ -19,3 +19,8 @@ class CreatePostView(CreateView):
     template_name = 'create_post.html'
     #fields = '__all__'
     #fields = ('title', 'body')
+
+class UpdatePostView(UpdateView):
+    model = Post
+    form_class = EditPostForm
+    template_name = "update_posts.html"
