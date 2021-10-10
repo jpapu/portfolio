@@ -2,18 +2,27 @@
 {% block title %}Delete Post{% endblock %}
 
 {% block content %}
-<h1>Delete Post</h1>
-<br><br>
-<h3>Delete: {{ post.title }}</h3>
-<p>{{ post.body }}</p></br>
 
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        <strong>Action is irriversible!</strong></br>
-        <button class="btn btn-secondary">Delete</button>
-    </form>
-</div>
+<!--When user is signed in-->
+{% if user.is_authenticated %}
+    <h1>Delete Post</h1>
+    <br><br>
+    <h3>Delete: {{ post.title }}</h3>
+    <p>{{ post.body }}</p></br>
+
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            <strong>Action is irriversible!</strong></br>
+            <button class="btn btn-secondary">Delete</button>
+        </form>
+    </div>
+<!--when no user-->
+{% else %}
+
+    <h1>Please sign in or sign up to delete posts!</h1>
+
+{% endif %}
 
 
 {% endblock %}
