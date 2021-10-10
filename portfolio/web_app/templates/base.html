@@ -18,29 +18,50 @@
 
     <!--Navigation Bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}"">Joey Papu</a>
+        <!--Home-->
+        <a class="navbar-brand" href="{% url 'home' %}"">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <!--Dropdown-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>
-                <!--Create Post-->
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'create_post' %}">create post</a>
-                </li>
+
+                <!--When user is signed in-->
+                {% if user.is_authenticated %}
+                    <!--Create Post-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_post' %}">create post</a>
+                    </li>
+                    <!--Dropdown - Sign Out Dropdown-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        register
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">User name here</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'logout' %}">sign out</a>
+                        </div>
+                    </li>
+
+                <!--When no user-->
+                {% else %}
+                    <!--Dropdown - Sign Up/In-->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        register
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">User name here</a>
+                        <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'login' %}">sign in</a>
+                            <a class="dropdown-item" href="{% url 'register' %}">sign up</a>
+                        </div>
+                    </li>
+                    
+                {% endif %}
+
             </ul>
             <!--Search Bar-->
             <form class="form-inline my-2 my-lg-0">
