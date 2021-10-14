@@ -9,7 +9,7 @@
     <li><a href="{% url 'article-detail' post.pk %}">
         {{ post.title }}<a>
         <small> ({{ post.author }} - {{ post.date_created }})</small><br/>
-        {{ post.body|slice:":30" }}
+        {{ post.body|safe|slice:":50" }}
     </li>
 {% endfor%}
 </ul>
