@@ -8,10 +8,13 @@
 {% for post in object_list %}
     <li><a href="{% url 'article-detail' post.pk %}">
         {{ post.title }}<a>
-        <small> ({{ post.author }} - {{ post.date_created }})</small><br/>
+        <small> {{ post.author }} - {{ post.date_created }})</small>
+        <a href="{% url 'category' post.category|slugify %}" class="badge badge-secondary">{{ post.category }}</a>
+        <br/>
         {{ post.body|safe|slice:":50" }}
     </li>
-{% endfor%}
+{% endfor %}
 </ul>
+
 
 {% endblock %}
