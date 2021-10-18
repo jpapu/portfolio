@@ -5,22 +5,23 @@
 
 <!--When user is signed in-->
 {% if user.is_authenticated %}
-    <h1>Update Post</h1>
-    <br><br>
-    <div class="form-group">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btn btn-secondary">Update</button>
-        </form>
-    </div>
-
+    <!--Check the correct user is logged in-->
+    {% if user.id == post.author.id %}
+        <h1>Update Post</h1>
+        <br><br>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Update</button>
+            </form>
+        </div>
+    {% else %}
+        <h1>Only the author can edit the post!</h1>
+    {% endif %}
 <!--when no user-->
 {% else %}
-
     <h1>Please sign in or sign up to edit posts!</h1>
-
 {% endif %}
-
 
 {% endblock %}
