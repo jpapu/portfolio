@@ -14,6 +14,11 @@
             <button class="btn btn-secondary">Post</button>
         </form>
     </div>
+    <!--Javascript to record user id-->
+    <script>
+        var value = "{{ user.id }}";
+        document.getElementById("username").value = value;
+    </script>
 <!--when no user-->
 {% else %}
 
