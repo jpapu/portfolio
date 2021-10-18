@@ -8,6 +8,7 @@ class Post(models.Model):
     title_tag = models.CharField(max_length = 255)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
+    category = models.CharField(max_length=255, default='uncategorized')
     date_created = models.DateField(auto_now_add=True)
 
     def __str__(self):
@@ -16,3 +17,15 @@ class Post(models.Model):
     def get_absolute_url(self):
         #return reverse('article-detail', args=(str(self.id))) #return to inidividual post after creation
         return reverse('home') #return to home after creation
+
+class Category(models.Model):
+    name = models.CharField(max_length = 255)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        #return reverse('article-detail', args=(str(self.id))) #return to inidividual post after creation
+        return reverse('home') #return to home after creation
+
+
