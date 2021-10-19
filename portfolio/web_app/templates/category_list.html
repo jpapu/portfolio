@@ -1,0 +1,10 @@
+{% block content %}
+
+<h1>Blog Categories</h1>
+    <div>
+        {% for cat in category_list %}
+        <a class="dropdown-item" href="{% url 'category' cat|slugify %}">{{cat}}</a>
+        {% endfor %}
+    </div>
+
+{% endblock %}
