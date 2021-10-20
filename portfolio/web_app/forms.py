@@ -11,25 +11,25 @@ for choice in choices:
 class CreatePostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'title_tag', 'author', 'category', 'body']
+        fields = ['title', 'title_tag', 'author', 'category', 'summary', 'body']
 
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'New Post Title'}),
-            'title_tag': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Short Description'}),
+            'title_tag': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Few word description'}),
             'author': forms.TextInput(attrs={'class':'form-control', 'value':'', 'id':'username', 'type':'hidden'}),
-            #'author': forms.Select(attrs={'class':'form-control'}),
             'category': forms.Select(choices=choice_list, attrs={'class':'form-control'}),
-            #'category': forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=choice_list),
+            'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Short description'}),
             'body': forms.Textarea(attrs={'class':'form-control'}),
         }
 
 class EditPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['title', 'title_tag', 'body']
+        fields = ['title', 'title_tag', 'summary', 'body']
 
         widgets = {
             'title': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'New Post Title'}),
             'title_tag': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Short Description'}),
+            'summary': forms.TextInput(attrs={'class':'form-control', 'placeholder': 'Short description'}),
             'body': forms.Textarea(attrs={'class':'form-control'}),
         }

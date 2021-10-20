@@ -11,7 +11,7 @@
         <small> {{ post.author }} - {{ post.date_created }})</small>
         <a href="{% url 'category' post.category|slugify %}" class="badge badge-secondary">{{ post.category }}</a>
         <br/>
-        {{ post.body|safe|slice:":50" }}
+        {{ post.summary }}
     </li>
 {% endfor %}
 </ul>
