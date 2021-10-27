@@ -36,4 +36,12 @@ class Category(models.Model):
         #return reverse('article-detail', args=(str(self.id))) #return to inidividual post after creation
         return reverse('home') #return to home after creation
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    bio = models.TextField()
+    profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile/")
+    git_url = models.CharField(max_length=255, null=True, blank=True)
+    lnkdin_url = models.CharField(max_length=255, null=True, blank=True)
 
+    def __str__(self):
+        return str(self.user)
