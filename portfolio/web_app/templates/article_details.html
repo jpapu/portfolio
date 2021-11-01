@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{{ post.title_tag }}{% endblock %}
 
 {% block content %}
@@ -47,5 +48,40 @@
     {% endif %}
     - {{ total_likes }} Likes
 </form>
+
+<br/><br/>
+
+<!--User Card-->
+<div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col-md-2">
+            {% if post.author.profile.profile_pic %}
+                <img src="{{ post.author.userprofile.profile_pic.url }}" class="card-img">
+            {% else %}
+                <img src="{% static '/portfolio/images/default_profile.png' %}" class="card-img">
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
+                <p class="card-text"><small class="text-muted">
+                    <!--User Profile linking-->
+                    <a href ="{% url 'show_profile_page' post.author.userprofile.id %}" >Profile Page</a>
+
+                    <!--LinkedIn linking-->
+                    {% if post.author.userprofile.lnkdin_url %}
+                        | <a href ="post.author.userprofile.lnkdin_url" >LinkedIn</a>
+                    {% endif %}
+                    
+                    <!--Git linking-->
+                    {% if post.author.userprofile.git_url %}
+                        | <a href ="post.author.userprofile.git_url" >Github</a> 
+                    {% endif %}
+                </small></small></p>
+                <p class="card-text">{{ post.author.userprofile.bio }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

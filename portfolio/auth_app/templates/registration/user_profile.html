@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<h1>User Profile</h1>
+
+<!--User Card-->
+<div class="card mb-3">
+    <div class="row no-gutters">
+        <div class="col-md-2">
+            {% if indv_user.profile_pic %}
+                <img src="{{ indv_user.profile_pic.url }}" class="card-img">
+            {% else %}
+                <img src="{% static '/portfolio/images/default_profile.png' %}" class="card-img">
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">{{ indv_user.user.first_name }} {{ indv_user.user.last_name }}</h5>
+                <p class="card-text"><small class="text-muted">
+                    <!--User Profile linking-->
+                    <a href ="{% url 'show_profile_page' indv_user.id %}" >Profile Page</a>
+
+                    <!--LinkedIn linking-->
+                    {% if indv_user.lnkdin_url %}
+                        | <a href ="indv_user.lnkdin_url" >LinkedIn</a>
+                    {% endif %}
+                    
+                    <!--Git linking-->
+                    {% if indv_user.git_url %}
+                        | <a href ="indv_user.git_url" >Github</a> 
+                    {% endif %}
+                </small></small></p>
+                <p class="card-text">{{ indv_user.bio }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
