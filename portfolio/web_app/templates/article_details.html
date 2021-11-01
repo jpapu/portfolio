@@ -51,6 +51,22 @@
 
 <br/><br/>
 
+<h2>Comments</h2><br>
+<a href="{% url 'add_comment' post.pk %}" class="btn btn-primary btn-sm">Add Comment</a><br><br>
+{% if not post.comments.all %}
+    No comments yet
+{% else %}
+    {% for comment in post.comments.all %}
+        <strong>
+            {{comment.name}} - {{ comment.date_added }}
+        </strong>
+        <br/>
+        {{ comment.body }}
+        <br/>
+    {% endfor %}
+{% endif %}
+<br/><br/>
+
 <!--User Card-->
 <div class="card mb-3">
     <div class="row no-gutters">
