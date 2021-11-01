@@ -64,9 +64,25 @@
                         register
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">User name here</a>
+                            <!--Username and link to profile page-->
+                            {% if user.userprofile.id %}
+                                <a class="dropdown-item" href="{% url 'show_profile_page' user.userprofile.id %}">{{ user.username }}</a>
+                            {% else %}
+                                <a class="dropdown-item" href="#">{{ user.username }}</a>
+                            {% endif %}
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{% url 'edit_profile' %}">edit profile</a>
+
+                            <!--Edit profile page or create profile page-->
+                            {% if user.userprofile.id %}
+                                <a class="dropdown-item" href="{% url 'edit_user_profile' user.userprofile.id %}">edit profile</a>
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'create_profile_page' %}">create profile</a>
+                            {% endif %}
+
+                            <!--Edit user settings-->
+                            <a class="dropdown-item" href="{% url 'edit_settings' %}">edit settings</a>
+                            
+                            <!--Logout-->
                             <a class="dropdown-item" href="{% url 'logout' %}">sign out</a>
                         </div>
                     </li>
@@ -79,8 +95,6 @@
                         register
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">User name here</a>
-                        <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'login' %}">sign in</a>
                             <a class="dropdown-item" href="{% url 'register' %}">sign up</a>
                         </div>
