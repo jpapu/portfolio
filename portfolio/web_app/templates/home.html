@@ -1,20 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Post</h1>
-
-<!--list posts with links-->
-<ul>
-{% for post in object_list %}
-    <li><a href="{% url 'article-detail' post.pk %}">
-        {{ post.title }}<a>
-        <small> {{ post.author }} - {{ post.date_created }})</small>
-        <a href="{% url 'category' post.category|slugify %}" class="badge badge-secondary">{{ post.category }}</a>
-        <br/>
-        {{ post.summary }}
-    </li>
-{% endfor %}
-</ul>
+<h1>Home</h1>
 
 
 {% endblock %}
