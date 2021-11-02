@@ -8,11 +8,15 @@ from django.http import HttpResponseRedirect
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
+
+class BlogView(ListView):
+    model = Post
+    template_name = 'blog.html'
     ordering = ['-date_created']
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = Category.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context = super(BlogView, self).get_context_data(*args, **kwargs)
         context["cat_menu"] = cat_menu
         return context
 
