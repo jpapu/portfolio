@@ -1,20 +1,33 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Post</h1>
+
+<!-- Page Header-->
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12 text-center">
+          <h1 class="fw-light">Blog Posts</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <!-- Page Content -->
+  
 
 <!--list posts with links-->
-<ul>
 {% for post in object_list %}
-    <li><a href="{% url 'article-detail' post.pk %}">
-        {{ post.title }}<a>
-        <small> {{ post.author }} - {{ post.date_created }})</small>
+    <div>
+        <h3><a href="{% url 'article-detail' post.pk %}">{{ post.title }}<a></h3>
         <a href="{% url 'category' post.category|slugify %}" class="badge badge-secondary">{{ post.category }}</a>
-        <br/>
-        {{ post.summary }}
-    </li>
-{% endfor %}
-</ul>
+        <p>{{ post.summary }}</p>
+        <small><em>{{ post.author.first_name }} {{ post.author.last_name }} - ({{ post.date_created }})</em></small>
+        <hr>
+    </div>    
+{% endfor %}    
+
 
 
 {% endblock %}
